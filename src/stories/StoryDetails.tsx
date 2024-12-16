@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Button, Card, Row, Col, Badge, Space } from "antd";
 import { Story } from "./types";
-import { StarOutlined, StarFilled } from "@ant-design/icons"; // Ant Design Icons for stars
+import { StarOutlined, StarFilled, HomeTwoTone } from "@ant-design/icons"; // Ant Design Icons for stars
 import CustomImage from "./components/CustomImage";
 import { getAppUrl } from "../const";
 
@@ -114,7 +114,7 @@ export const StoryDetails: React.FC<StoryDetailsProps> = ({
               <Button
                 type="primary"
                 onClick={handleFinish}
-                className="w-full md:w-auto"
+                className="w-auto lg:w-full"
               >
                 Finish
               </Button>
@@ -126,8 +126,8 @@ export const StoryDetails: React.FC<StoryDetailsProps> = ({
       <Card
         title={
           <div className="flex justify-between items-center">
-            <span className="text-xl font-bold">{story.title}</span>
-            <Space>
+            <span className="text-xl font-bold" style={{ width:"auto", overflowX: "hidden", textOverflow:"ellipsis"}}>{story.title}</span>
+            <Space style={{minWidth: '75px'}} >
               {
                 // Previous Button (only shown if not on the first chapter)
                 currentChapterIndex > 0 &&
@@ -137,9 +137,9 @@ export const StoryDetails: React.FC<StoryDetailsProps> = ({
                       key="previous"
                       type="default"
                       onClick={onPreviousChapter}
-                      className="w-full md:w-auto"
+                      className="w-full md:w-auto hidden lg:block"
                     >
-                      Previous Chapter
+                      Previous
                     </Button>
                   )
               }
@@ -154,17 +154,20 @@ export const StoryDetails: React.FC<StoryDetailsProps> = ({
                     }
                     onNextChapter();
                   }}
-                  className="w-full md:w-auto"
+                  className="w-full md:w-auto hidden lg:block"
                 >
-                  Next Chapter
+                  Next
                 </Button>
               )}
               <Button
                 type="default"
                 onClick={goBackToStories}
-                className="text-blue-500 hover:text-blue-700"
+                className="text-blue-500 hover:text-blue-700 w-auto lg:w-full"
+                icon={<HomeTwoTone style={{fontSize: "24px"}} />}
               >
-                All Stories
+               <p className="hidden lg:block">
+               All Stories
+               </p>
               </Button>
             </Space>
           </div>
@@ -177,9 +180,9 @@ export const StoryDetails: React.FC<StoryDetailsProps> = ({
               key="previous"
               type="default"
               onClick={onPreviousChapter}
-              className="w-full md:w-auto"
+              className="w-auto lg:w-full lg:hidden"
             >
-              Previous Chapter
+              Previous
             </Button>
           ),
 
@@ -195,9 +198,9 @@ export const StoryDetails: React.FC<StoryDetailsProps> = ({
                 }
                 onNextChapter();
               }}
-              className="w-full md:w-auto"
+              className="w-auto lg:w-full lg:hidden"
             >
-              Next Chapter
+              Next
             </Button>
           ),
         ]}
