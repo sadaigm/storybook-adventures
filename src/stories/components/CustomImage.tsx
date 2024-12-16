@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { getAppUrl } from '../../const';
 
 interface CustomImageProps {
   src: string; // Image source URL
@@ -12,7 +13,7 @@ const CustomImage: React.FC<CustomImageProps> = ({
   src,
   alt,
   className,
-  defaultSrc = `${window.location.origin}/defaultImage.jpeg`, // Default fallback image
+  defaultSrc = `${getAppUrl()}/defaultImage.jpeg`, // Default fallback image
   title = 'No Image Available', // Default title for overlay
 }) => {
   const [imageSrc, setImageSrc] = useState<string>(src); // Set the initial image source to the provided `src`

@@ -2,6 +2,7 @@ import React from "react";
 import { Card, Button } from "antd";
 import { Story } from "./types";
 import CustomImage from "./components/CustomImage";
+import { getAppUrl } from "../const";
 
 interface StoryListProps {
   stories: Story[];
@@ -15,7 +16,7 @@ export const StoryList: React.FC<StoryListProps> = ({ stories, onStoryClick }) =
         <Card
           key={story.title}
           hoverable
-          cover={<CustomImage alt={story.title}  src={window.location.origin+"/" + (story.title+".jpeg")}  title={story.title} />}
+          cover={<CustomImage alt={story.title}  src={getAppUrl()+"/" + (story.title+".jpeg")}  title={story.title} />}
           onClick={() => onStoryClick(story)}
           className="cursor-pointer"
         >

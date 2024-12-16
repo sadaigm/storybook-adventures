@@ -3,6 +3,7 @@ import { Button, Card, Row, Col, Badge, Space } from "antd";
 import { Story } from "./types";
 import { StarOutlined, StarFilled } from "@ant-design/icons"; // Ant Design Icons for stars
 import CustomImage from "./components/CustomImage";
+import { getAppUrl } from "../const";
 
 interface StoryDetailsProps {
   story: Story;
@@ -185,7 +186,7 @@ export const StoryDetails: React.FC<StoryDetailsProps> = ({
           {/* Image Section */}
           <div className="flex-1 md:w-1/3 p-2">
             <CustomImage
-              src={`${window.location.origin}/${story.title}.jpeg`} // Ensure the correct path
+              src={`${getAppUrl()}/${story.title}.jpeg`} // Ensure the correct path
               alt={story.title}
               className="rounded-lg w-full h-auto object-cover mt-6 h-full"
               title={story.title}
