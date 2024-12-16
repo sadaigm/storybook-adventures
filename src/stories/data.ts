@@ -2,6 +2,62 @@ import { Story } from "./types";
 
 export const storiesDB: Story[] = [
   {
+    "title": "Bella's Magical Machine",
+    "genre": "Adventure, Fantasy, Creativity, Responsibility",
+    "chapters": [
+      {
+        "chapter": 1,
+        "title": "The Inventor's Dream",
+        "text": "Bella was a clever young girl who loved to invent things. Ever since she was little, she dreamt of creating something that would change the world. One afternoon, she decided to build a magical machine, something no one had ever seen before. She worked all day, carefully putting together gears, wires, and magical crystals she had found in the attic. With a press of a button, the machine hummed to life—but something went wrong. Suddenly, a group of mischievous animals appeared from the machine, jumping and bouncing around the room. Bella gasped as a small squirrel knocked over a pile of books, and a curious rabbit nibbled on her blueprints. She quickly realized her invention had created a portal to another world, bringing the animals with it. Now, Bella had a big problem on her hands—how could she send these playful creatures back home?"
+      },
+      {
+        "chapter": 2,
+        "title": "The Animal Chaos",
+        "text": "The animals were adorable but incredibly mischievous. A fluffy bear cub stole Bella’s tools, and a clever owl took her notebook and flew away with it. Bella knew she had to act fast. She thought about how she could fix her machine and send the animals back, but they kept causing chaos. The animals weren't mean, just very curious, and each one had a unique ability to cause mischief. The rabbit chewed through wires, the squirrel hid her spare parts, and the bear cub kept playing with the buttons on the machine. Bella knew she couldn’t get frustrated; she had to stay calm and think creatively. She decided to use her knowledge of her own inventions to create a solution. She built a small 'trap' to catch the animals one by one, carefully making sure they weren’t hurt in the process. But there was still one problem: how to get the machine working again."
+      },
+      {
+        "chapter": 3,
+        "title": "Finding the Right Solution",
+        "text": "Bella spent hours tinkering with her machine, using every tool and trick she knew. As she worked, the animals continued their playful antics. The owl had found a perch on top of her workbench, watching her with curious eyes. Bella sighed but didn’t give up. She realized the solution wasn’t in fixing the machine all at once but instead in understanding how the animals interacted with it. Bella carefully observed how the animals were drawn to the glowing crystals in the machine. An idea sparked! She took the crystals and rearranged them in a new pattern. The machine buzzed to life again, and this time, the animals started to gather around the device. Bella held her breath, watching as the animals slowly entered the machine’s portal, returning to their own world one by one. With a final push of a button, the last animal disappeared, and Bella smiled with relief."
+      },
+      {
+        "chapter": 4,
+        "title": "A Lesson in Responsibility",
+        "text": "With the animals gone, Bella looked at her now-quiet room. Her machine had worked, but she realized that every invention came with responsibility. While the animals were fun, their mischief reminded her that she needed to think carefully about how her creations affected the world around her. Bella had learned that creativity was important, but so was being responsible with her inventions. She made a note in her notebook: 'Every invention must have a purpose, and every action has a consequence.' She promised herself that the next time she built something, she would think through all the possibilities and test it carefully before turning it on. As Bella cleaned up her workbench, she felt proud of what she had accomplished and excited for her next invention, knowing that each step forward was a lesson learned."
+      }
+    ],
+    "moral": "Creativity is important, but responsibility ensures our inventions are safe for everyone."
+  },
+  {
+    "title": "Sky's First Flight",
+    "genre": "Adventure, Friendship, Courage, Self-confidence",
+    "chapters": [
+      {
+        "chapter": 1,
+        "title": "A Little Bird with Big Dreams",
+        "text": "Sky was a small, bright blue bird who lived in a tall tree with her family. All the other birds in the tree had learned to fly long ago, but Sky couldn’t muster the courage to take her first flight. Every time she looked down from the branch, she felt her wings tremble. Her friends, like Oliver the wise owl and Rosie the brave robin, tried to encourage her. 'It’s easy, Sky! Just spread your wings and trust the wind,' said Oliver. Rosie cheered her on, 'Flying is fun! You’ll see!' But no matter how hard Sky tried, she couldn’t get past her fear. She watched as her friends soared high above, wishing she could be as confident as them. Sky felt sad but didn’t know how to overcome her fear."
+      },
+      {
+        "chapter": 2,
+        "title": "A Helping Wing",
+        "text": "One morning, Sky sat at the edge of her nest, watching the other birds fly. 'I’m just not ready,' she thought, feeling discouraged. Seeing this, Oliver flew over to Sky and perched beside her. 'Sky,' he said kindly, 'it’s okay to feel scared. Everyone feels that way at first. When I learned to fly, I was afraid too. But I had help.' Rosie flew by and landed next to them, nodding. 'Sky, you don’t have to fly alone. We can help you.' Sky’s eyes widened. Maybe, with her friends’ support, she could try. 'You’ll be right here with me?' she asked. Oliver smiled. 'Of course, we’ll be here. One step at a time.' Rosie spread her wings. 'Let’s start with small flights together!' Sky felt a little spark of hope. Maybe today was the day she would try."
+      },
+      {
+        "chapter": 3,
+        "title": "Taking the First Leap",
+        "text": "Sky took a deep breath as Rosie gently guided her to the tip of the branch. 'Okay, Sky,' said Rosie softly. 'Just flap your wings gently and trust the wind to carry you.' Sky hesitated but remembered her friends’ encouraging words. She spread her wings, feeling the breeze beneath them. With a tiny hop, she flapped her wings and fluttered into the air. At first, she was shaky, her wings trembling, but Rosie stayed close by, flying alongside her. 'You’re doing great!' Rosie cheered. Sky looked down and saw the ground far below, but instead of feeling scared, she felt the wind beneath her wings. She could do it! Her wings grew stronger with every flap. With Oliver soaring just above her, Sky flew higher, gaining confidence with every beat. She felt the joy of freedom for the first time."
+      },
+      {
+        "chapter": 4,
+        "title": "Flying Together",
+        "text": "Sky felt a burst of happiness as she flew side by side with Rosie and Oliver. 'I’m flying!' Sky chirped, her heart full of excitement. She had done it—she had faced her fear with help from her friends. As they flew above the trees, Sky realized that asking for help wasn’t a sign of weakness; it was a way to grow stronger. She now knew that everyone had their own challenges, but with friends by your side, you could overcome anything. 'Thank you for helping me,' Sky said gratefully to her friends. Oliver smiled and nodded. 'You did it, Sky. Now you know, it’s okay to ask for help when you need it.' Sky flapped her wings harder, flying higher and feeling braver than ever. She was no longer afraid to fly, knowing she had the support and courage to soar."
+      }
+    ],
+    "moral": "It's okay to ask for help; bravery grows when we support each other."
+  }
+  
+,  
+  {
     title: "The Kind Dragon",
     genre: "Children, Fantasy, Friendship",
     chapters: [
@@ -365,3 +421,15 @@ export const storiesDB: Story[] = [
       "Even the smallest can make a big difference when they believe in themselves.",
   },
 ];
+
+export const getFilterMenu = () => {
+  const filterOptions: Array<string> = [];
+  storiesDB.forEach(s => {
+    const g = s.genre;
+    const options = g.split(",")
+    const unique = options.filter(m => filterOptions.indexOf(m.trim())=== -1).map(f => f.trim());
+    filterOptions.push(...unique)
+  })
+  console.log({filterOptions});
+  return filterOptions;
+}

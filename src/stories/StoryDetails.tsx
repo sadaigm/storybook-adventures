@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button, Card, Row, Col, Badge, Space } from "antd";
 import { Story } from "./types";
 import { StarOutlined, StarFilled } from "@ant-design/icons"; // Ant Design Icons for stars
@@ -27,6 +27,8 @@ export const StoryDetails: React.FC<StoryDetailsProps> = ({
   const chapter = story.chapters[currentChapterIndex];
   const isLastChapter = currentChapterIndex === story.chapters.length - 1;
 
+  const storyTitleRef = useRef<HTMLDivElement | null>(null);
+
   // To track completed chapters and show stars
   const [completedChapters, setCompletedChapters] = useState<boolean[]>(defaultCompletedChapters ||
     new Array(story.chapters.length).fill(false)
@@ -49,6 +51,12 @@ export const StoryDetails: React.FC<StoryDetailsProps> = ({
     
   };
 
+  useEffect(()=> {
+    if (chapter && storyTitleRef.current) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  },[chapter, isStoryFinished,isMoralVisible, isLastChapter])
+
   // Function to handle Finish button click
   const handleFinish = () => {
     setIsMoralVisible(false);
@@ -62,7 +70,7 @@ export const StoryDetails: React.FC<StoryDetailsProps> = ({
   }
 
   return (
-    <div className="max-w-full mx-auto min-h-screen flex flex-col">
+    <div ref={storyTitleRef}  className="max-w-full mx-auto min-h-screen flex flex-col">
       {/* Progress Card */}
       <Card className="mb-8">
         <Row justify="space-between" align="middle">
@@ -250,14 +258,14 @@ export const StoryDetails: React.FC<StoryDetailsProps> = ({
               </div>
             )}
             {!isStoryFinished && (
-              <>
+              <div>
                 <h3 className="text-2xl font-semibold text-gray-800 mb-4">
                   {chapter.title}
                 </h3>
                 <p className="text-lg leading-relaxed text-gray-700">
                   {chapter.text}
                 </p>
-              </>
+              </div>
             )}
           </div>
         </div>

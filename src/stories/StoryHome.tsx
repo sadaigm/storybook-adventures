@@ -3,35 +3,10 @@ import { Layout, Card, Button, Select } from "antd";
 import { StoryList } from "./StoryList";
 import { StoryDetails } from "./StoryDetails";
 import { Story } from "./types";
-import { storiesDB } from "./data";
+import { getFilterMenu, storiesDB } from "./data";
 
 const { Option } = Select;
 const { Header, Content } = Layout;
-
-const stories: any[] = [
-  {
-    title: "Leo and the Storm",
-    genre: "Adventure, Friendship, Teamwork, Courage",
-    chapters: [
-      { title: "The Gathering Clouds", text: "Leo, a young lion, watched dark clouds gather over the jungle." },
-      { title: "Asking for Help", text: "Leo ran through the jungle, calling for his friends." },
-      { title: "Working Together", text: "Leo, Ellie, and Monty worked together to protect the jungle." },
-      { title: "The Storm Passes", text: "When the storm passed, the jungle was calm again." }
-    ],
-    moral: "Bravery is important, but teamwork makes everything stronger and safer."
-  },
-  {
-    title: "The Brave Little Firefly",
-    genre: "Adventure, Friendship, Courage",
-    chapters: [
-      { title: "A Tiny Spark", text: "Luna, a tiny firefly, lived in a cozy forest." },
-      { title: "The Dark Storm", text: "One evening, a storm rolled in. Dark clouds covered the sky." },
-      { title: "The Courage to Shine", text: "Luna took a deep breath and shone brighter, pushing through her fear." },
-      { title: "The Forest Illuminated", text: "Together, the fireflies lit up the whole forest." }
-    ],
-    moral: "Even the smallest can make a big difference with courage and teamwork."
-  }
-];
 
 export const StoryApp: React.FC = () => {
   const [selectedGenre, setSelectedGenre] = useState<string>("All");
@@ -74,10 +49,11 @@ export const StoryApp: React.FC = () => {
   }
 
   const handleGenreChange = (value: string) => {
-    setSelectedGenre(value);
+    setSelectedGenre(value||"All");
   };
   const handleBackToStories = () => {
     setSelectedStory(null);
+    setCompletedChapters([]);
   }
 
   const loadStarCollected = (storyTitle: string) => {
@@ -91,6 +67,7 @@ export const StoryApp: React.FC = () => {
     setCompletedChapters(data);
     sessionStorage.setItem("starCollected-"+storyTitle,JSON.stringify(data));
   }
+  const filterOptions =getFilterMenu()
 
   return (
     <Layout className="h-full">
@@ -109,12 +86,11 @@ export const StoryApp: React.FC = () => {
         {!selectedStory ? (
           <>
             <div className="mb-4">
-              <Select value={selectedGenre} onChange={handleGenreChange} className="w-full" defaultValue="All">
+              <Select value={selectedGenre} onChange={handleGenreChange} className="w-full"  allowClear onClear={() => {
+                setSelectedGenre("All")
+              }} defaultValue={selectedGenre||"All"}>
                 <Option value="All">All Genres</Option>
-                <Option value="Adventure">Adventure</Option>
-                <Option value="Friendship">Friendship</Option>
-                <Option value="Courage">Courage</Option>
-                <Option value="Teamwork">Teamwork</Option>
+                {filterOptions.map(f => <Option key={f} value={f}>{f}</Option>)}
               </Select>
             </div>
             <StoryList stories={filterStories(selectedGenre)} onStoryClick={handleStoryClick} />
