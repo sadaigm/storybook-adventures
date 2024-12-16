@@ -11,6 +11,8 @@ interface StoryDetailsProps {
   onNextChapter: () => void;
   onPreviousChapter: () => void;
   goBackToStories: () => void;
+  defaultCompletedChapters: boolean[];
+  updateCompletedChapters: (key: string, a: boolean[]) => void;
 }
 
 export const StoryDetails: React.FC<StoryDetailsProps> = ({
@@ -19,17 +21,19 @@ export const StoryDetails: React.FC<StoryDetailsProps> = ({
   onNextChapter,
   onPreviousChapter,
   goBackToStories,
+  defaultCompletedChapters,
+  updateCompletedChapters,
 }) => {
   const chapter = story.chapters[currentChapterIndex];
   const isLastChapter = currentChapterIndex === story.chapters.length - 1;
 
   // To track completed chapters and show stars
-  const [completedChapters, setCompletedChapters] = useState<boolean[]>(
+  const [completedChapters, setCompletedChapters] = useState<boolean[]>(defaultCompletedChapters ||
     new Array(story.chapters.length).fill(false)
   );
 
   // To track if the user has finished the story
-  const [isStoryFinished, setIsStoryFinished] = useState(false);
+  const [isStoryFinished, setIsStoryFinished] = useState(getFinishedStatus(story.title)||false);
 
   // To track if the moral has been displayed
   const [isMoralVisible, setIsMoralVisible] = useState(false);
@@ -39,15 +43,23 @@ export const StoryDetails: React.FC<StoryDetailsProps> = ({
     setCompletedChapters((prev) => {
       const updated = [...prev];
       updated[currentChapterIndex] = true;
+      updateCompletedChapters(story.title, updated);
       return updated;
     });
+    
   };
 
   // Function to handle Finish button click
   const handleFinish = () => {
     setIsMoralVisible(false);
     setIsStoryFinished(true); // Mark the story as finished
+    sessionStorage.setItem("finished-"+story.title,"true");
   };
+
+  const readAgain = () => {
+    setIsStoryFinished(false); 
+    sessionStorage.removeItem("finished-"+story.title);
+  }
 
   return (
     <div className="max-w-full mx-auto min-h-screen flex flex-col">
@@ -222,6 +234,19 @@ export const StoryDetails: React.FC<StoryDetailsProps> = ({
                 >
                   OK, Go Back to List
                 </Button>
+                <Button
+                  type="primary"
+                  onClick={readAgain}
+                  className="mt-4 text-white bg-gradient-to-r from-indigo-500 via-blue-700 to-green-500 hover:from-indigo-700 hover:to-pink-700 shadow-lg transform transition-all hover:scale-105"
+                  style={{
+                    padding: "12px 24px",
+                    fontSize: "16px",
+                    borderRadius: "9999px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Read Again
+                </Button>
               </div>
             )}
             {!isStoryFinished && (
@@ -239,4 +264,12 @@ export const StoryDetails: React.FC<StoryDetailsProps> = ({
       </Card>
     </div>
   );
+
+  function getFinishedStatus(title: string ): boolean  {
+    const sData= sessionStorage.getItem("finished-" +title);
+    if(sData){
+      return JSON.parse(sData)
+    }
+    return false;
+  }
 };

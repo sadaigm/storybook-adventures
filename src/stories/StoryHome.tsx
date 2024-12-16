@@ -37,6 +37,9 @@ export const StoryApp: React.FC = () => {
   const [selectedGenre, setSelectedGenre] = useState<string>("All");
   const [selectedStory, setSelectedStory] = useState<Story | null>(null);
   const [currentChapterIndex, setCurrentChapterIndex] = useState<number>(0);
+  const [completedChapters, setCompletedChapters] = useState<boolean[]>(
+    new Array(selectedStory?.chapters.length).fill(false)
+  );
 
   const filterStories = (genre: string) => {
     if (genre === "All") return storiesDB;
@@ -45,7 +48,17 @@ export const StoryApp: React.FC = () => {
 
   const handleStoryClick = (story: Story) => {
     setSelectedStory(story);
+   const stars =  loadStarCollected(story.title)
+   console.log({stars})
+   if(stars.length != 0){
+    setCompletedChapters(stars);
+    let c = Math.min(stars.length, story.chapters.length -1 );
+    setCurrentChapterIndex( c);
+   }
+   else{
     setCurrentChapterIndex(0);
+   }
+    
   };
 
   const handleNextChapter = () => {
@@ -55,7 +68,7 @@ export const StoryApp: React.FC = () => {
   };
 
   const handlePreviousChapter = () => {
-    if (selectedStory && currentChapterIndex > 0 && currentChapterIndex < selectedStory.chapters.length - 1) {
+    if (selectedStory && currentChapterIndex > 0 && currentChapterIndex <= selectedStory.chapters.length - 1) {
         setCurrentChapterIndex(currentChapterIndex - 1);
       }
   }
@@ -65,6 +78,18 @@ export const StoryApp: React.FC = () => {
   };
   const handleBackToStories = () => {
     setSelectedStory(null);
+  }
+
+  const loadStarCollected = (storyTitle: string) => {
+    const storedData = sessionStorage.getItem(`starCollected-${storyTitle}`);
+    if (storedData) {
+      return JSON.parse(storedData);
+    }
+    return []; // Default to starting from the first chapter
+  };
+  const handleCompletedChapters = (storyTitle: string , data: boolean[]) => {
+    setCompletedChapters(data);
+    sessionStorage.setItem("starCollected-"+storyTitle,JSON.stringify(data));
   }
 
   return (
@@ -101,6 +126,8 @@ export const StoryApp: React.FC = () => {
             onNextChapter={handleNextChapter}
             onPreviousChapter={handlePreviousChapter}
             goBackToStories={handleBackToStories}
+            defaultCompletedChapters={completedChapters}
+            updateCompletedChapters={handleCompletedChapters}
           />
         )}
       </Content>
