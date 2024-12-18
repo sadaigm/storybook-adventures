@@ -4,7 +4,7 @@ import { Story } from "./types";
 import { StarOutlined, StarFilled, HomeTwoTone } from "@ant-design/icons"; // Ant Design Icons for stars 
 import CustomImage from "./components/CustomImage";
 import { getAppUrl } from "../const";
-import SpeechPlayer from "./components/SpeechPlayer";
+import NewSpeechPlayer from "./components/NewSpeechPlayer";
 
 interface StoryDetailsProps {
   story: Story;
@@ -209,7 +209,7 @@ export const StoryDetails: React.FC<StoryDetailsProps> = ({
           {/* Text Section */}
           <div className="flex-1 md:w-2/3 p-2">
             {!isStoryFinished && (
-               <SpeechPlayer text={chapter.text} />
+               <NewSpeechPlayer text={chapter.text} />
             )}
 
             {/* Congratulatory Message with Gold Badge */}
