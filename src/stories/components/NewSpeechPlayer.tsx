@@ -20,6 +20,21 @@ const NewSpeechPlayer: React.FC<SpeechPlayerProps> = ({ text }) => {
   );
 
   useEffect(() => {
+    // Set up the beforeunload event to cancel speech when leaving the page
+    const handleBeforeUnload = () => {
+      window.speechSynthesis.cancel();
+    };
+
+    // Add the beforeunload event listener
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    // Cleanup the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []); // Empty dependency array ensures this runs only once when the component mounts
+
+  useEffect(() => {
     const loadVoices = () => {
       console.log("Loading available voices...");
       const availableVoices = window.speechSynthesis.getVoices();
@@ -33,6 +48,7 @@ const NewSpeechPlayer: React.FC<SpeechPlayerProps> = ({ text }) => {
 
     // Load voices when the page loads
     loadVoices();
+   
 
     // Check if voices are dynamically loaded after a delay (in case they're not available immediately)
     window.speechSynthesis.onvoiceschanged = loadVoices;
@@ -53,6 +69,9 @@ const NewSpeechPlayer: React.FC<SpeechPlayerProps> = ({ text }) => {
     }
 
     setUtterance(u);
+    setIsPlaying(false);
+    setIsPaused(false);
+    setshowStop(false);
 
     return () => {
       synth.cancel();
