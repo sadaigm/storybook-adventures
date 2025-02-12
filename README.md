@@ -178,11 +178,3 @@ Here are some cool images from the app:
 Now go ahead, open up a story, and enjoy your reading adventure in **Storybook Adventures**!
 
 ---
-
-### Key Changes for Vite:
-
-- Replaced `npm start` with `npm run dev` since Vite uses `dev` for local development.
-- Used `vite` for fast and efficient bundling.
-- Modified the install process to reflect the setup with `npm` or `yarn` (depending on your preference).
-
----
